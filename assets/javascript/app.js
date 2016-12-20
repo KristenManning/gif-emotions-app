@@ -36,7 +36,7 @@ $(document).ready(function() {
             
             var item_div = $('<div class="col-md-4 item">');
             var item_rating = $("<p>").text(gif_array[i].rating);
-            var item_img = $("<img>").attr("src", gif_array[i].images.fixed_height.url);
+            var item_img = $("<img>").attr("src", gif_array[i].images.fixed_height_still.url).attr("data-src2", gif_array[i].images.fixed_height.url);
             // Appending the paragraph and image tag to the emotionDiv
             item_div.append(item_img).append(item_rating);
             // Prependng the emotionDiv to the HTML page in the "#gifs-appear-here" div
@@ -44,6 +44,14 @@ $(document).ready(function() {
           }
         });
     });
+
+  $(document).on("click", "img", function() {
+    var new_src = $(this).data("src2")
+    var new_src2 = $(this).attr("src")
+    $(this).data("src2", new_src2)
+    $(this).attr("src", new_src)
+
+  });
 
   $(".btn-default").on("click", function() {
     var new_emotion = $("#user_input").val();
