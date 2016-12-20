@@ -57,6 +57,7 @@ $(document).ready(function() {
     var new_emotion = $("#user_input").val();
     emotions.push(new_emotion)
     display_buttons()
+    return false
   });
   
 })       
