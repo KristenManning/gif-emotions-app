@@ -1,0 +1,43 @@
+
+body{ 
+	padding: 5%;
+}
+
+h1{
+	font-family: 'Slabo 27px', serif;
+	font-size: 110px;
+	line-height: 90px;
+	font-weight: bold;
+}
+
+h2{
+	font-size: 44px;
+	letter-spacing: 0.1em;
+	font-style: italic;
+}
+
+h3{
+}
+
+p{
+	text-align: center;
+}
+
+.title{
+	border-style: solid;
+	border-width: 5px;
+	padding-left: 2%;
+}
+
+.btn-success{
+	margin: 1%;
+	font-size: 20px;
+}
+
+.item{
+	text-align: center;
+}
+
+#user_input{
+	width: 50%;
+}
