@@ -17,7 +17,7 @@ $(document).ready(function() {
       // create a queryURL that corresponds to the emotion that was clicked on and make an ajax request to giphy 
 
       var emotion = $(this).data("emotion");
-      var queryURL = "http://api.giphy.com/v1/gifs/search?q=" +
+      var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
         emotion + "&api_key=dc6zaTOxFJmzC&limit=12";
       $.ajax({
           url: queryURL,
