@@ -13,38 +13,40 @@ $(document).ready(function() {
   display_buttons()
 
   $(document).on("click", ".btn-success", function() {
-      // Grabbing and storing the data-emotion property value from the button
+
+      // create a queryURL that corresponds to the emotion that was clicked on and make an ajax request to giphy 
+
       var emotion = $(this).data("emotion");
-      // Constructing a queryURL using the emotion name
       var queryURL = "http://api.giphy.com/v1/gifs/search?q=" +
-        emotion + "&api_key=dc6zaTOxFJmzC&limit=10";
-      // Performing an AJAX request with the queryURL
+        emotion + "&api_key=dc6zaTOxFJmzC&limit=12";
       $.ajax({
           url: queryURL,
           method: "GET"
         })
-        // After data comes back from the request
+        
         .done(function(response) {
           // Empty out the gifs sections of the page before adding new gifs 
-          $(".gifs").html("");
-          console.log(queryURL);
-          console.log(response);
+          $(".gifs").html("<p>Click on any gif to start or stop its animation.</p>");
           
-          // Loop over the ten gifs (limited to ten in queryURL)
+          // Then loop over the available gifs (limited to ten in queryURL)
+          // add the still image and its rating to the page each time
+          // store the animated image as data-src2
+
           var gif_array = response.data;
           for (var i = 0; i < gif_array.length; i++) {
             
             var item_div = $('<div class="col-md-4 item">');
             var item_rating = $("<p>").text(gif_array[i].rating);
             var item_img = $("<img>").attr("src", gif_array[i].images.fixed_height_still.url).attr("data-src2", gif_array[i].images.fixed_height.url);
-            // Appending the paragraph and image tag to the emotionDiv
+            
             item_div.append(item_img).append(item_rating);
-            // Prependng the emotionDiv to the HTML page in the "#gifs-appear-here" div
-            $(".gifs").prepend(item_div);
+            $(".gifs").append(item_div);
           }
         });
     });
 
+  // When a gif is clicked, swap the data-src2 value with the img source
+  // src = still & src2 = animated --> src = animated & src2 = still, or vice versa 
   $(document).on("click", "img", function() {
     var new_src = $(this).data("src2")
     var new_src2 = $(this).attr("src")
@@ -53,6 +55,7 @@ $(document).ready(function() {
 
   });
 
+  // When a new emotion is submitted, add it to the emotions array and run the display buttons function again to display it  
   $(".btn-default").on("click", function() {
     var new_emotion = $("#user_input").val();
     emotions.push(new_emotion)
